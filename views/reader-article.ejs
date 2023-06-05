@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/metadata', { title: 'Home' }); %>
+</head>
+
+<body class="bg-dark text-secondary">
+  <%- include('./partials/header'); %>
+
+  <div class="container my-4">
+
+    <h1 class="text-<%= color %> border-bottom border-<%= color %>">
+      <%= article.title %>
+    </h1>
+    <h4>
+      <%= article.subtitle %>
+      <button type="button" class="btn btn-<%= article.likes ? '' : 'outline-' %><%= color %> btn-sm float-end" onclick="like()">
+        Like (<%= article.likes %>)
+      </button>
+    </h4>
+    <span class="fw-light">
+      <%= new Date(article.published).toLocaleString() %>
+    </span>
+
+    <p class="mt-5 mb-5 text-white">
+      <%= article.body %>
+    </p>
+
+    <div class="mb-3">
+      <label for="comment" class="form-label">Leave your comment on this article</label>
+      <button type="button" class="btn btn-outline-<%= color %> btn-sm float-end mb-1" onclick="comment()">
+        Comment
+      </button>
+      <textarea class="form-control text-bg-dark border-<%= color %>" id="comment" name="comment" rows="3"></textarea>
+    </div>
+
+    <% comments.forEach(function(comment) { %>
+      <div class="card text-bg-dark border-secondary mb-3">
+        <div class="card-body p-2">
+          <%= comment.body %>
+          <p class="card-subtitle fw-light">
+            <%= comment.created %>
+          </p>
+        </div>
+      </div>
+    <% }); %>
+
+    <div class="translate-middle">
+      <a class="btn btn-<%= color %> float-end" href="/" role="button">Return</a>
+    </div>
+  </div>
+
+  <script>
+    function like() {
+      fetch('/like/<%= article.id %>', { method: 'POST' }).then(function (res) { location.reload(); });
+    }
+
+    function comment() {
+      const value = document.querySelector('#comment').value;
+
+      if (value) {
+        const formData = new URLSearchParams({ comment: value });
+        fetch('/comment/<%= article.id %>', {
+          body: formData,
+          method: 'post'
+        }).then(function (res) { location.reload(); });
+      }
+    }
+  </script>
+</body>
+
+</html>

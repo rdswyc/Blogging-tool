@@ -1,0 +1,18 @@
+<div class="px-4 py-5 text-center">
+  <h1 class="display-5 fw-bold">
+    <a href="/" class="text-white text-decoration-none">
+      <%= global.settings.title %>
+    </a>
+  </h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="fs-5 mb-0">
+      <%= global.settings.subtitle %>
+    </p>
+    <p class="fw-light">
+      <%= global.settings.author %>
+    </p>
+  </div>
+  <% if (locals.goto) { %>
+    <a href="/<%= goto %>" class="text-white">Go to <%= goto %> home</a>
+  <% } %>
+</div>

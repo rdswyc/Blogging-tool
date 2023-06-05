@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/metadata', { title: 'Blog Settings' }); %>
+</head>
+
+<body class="bg-dark text-secondary">
+  <%- include('./partials/header'); %>
+
+  <div class="container my-2">
+
+    <div class="row mb-4">
+      <h1 class="text-white border-bottom">
+        Blog settings
+      </h1>
+      <span class="fw-light">
+        Use this page to update the main blog settings.
+      </span>
+    </div>
+
+    <div class="row">
+      <form method="post" action="/author/settings">
+        <div class="mb-3">
+          <label for="title" class="form-label">Blog title</label>
+          <input type="text" class="form-control text-bg-dark" id="title" name="title" value="<%= title %>" required>
+        </div>
+        <div class="mb-3">
+          <label for="subtitle" class="form-label">Blog subtitle</label>
+          <input type="text" class="form-control text-bg-dark" id="subtitle" name="subtitle" value="<%= subtitle %>" required>
+        </div>
+        <div class="mb-4">
+          <label for="author" class="form-label">Author name</label>
+          <input type="text" class="form-control text-bg-dark" id="author" name="author" value="<%= author %>" required>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <a class="btn btn-light float-end" href="/author" role="button">Back</a>
+      </form>
+    </div>
+
+  </div>
+</body>
+
+</html>

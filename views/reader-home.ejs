@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/metadata', { title: 'Read Article' }); %>
+</head>
+
+<body class="bg-dark text-secondary">
+  <%- include('./partials/header', { goto: 'author' }); %>
+
+  <div class="container">
+    <div class="row row-cols-3">
+      <% articles.forEach(function(article) { %>
+        <div class="col mb-4">
+
+          <a class="card border-<%= getColor(article.id) %> text-bg-dark text-decoration-none mb-3" href="/reader/<%= article.id %>">
+            <div class="card-header bg-transparent border-<%= getColor(article.id) %>">Article</div>
+            <div class="card-body text-<%= getColor(article.id) %>">
+              <h5 class="card-title">
+                <%= article.title %>
+              </h5>
+              <p class="card-text">
+                <%= article.subtitle %>
+              </p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <span class="fw-light">
+                <%= new Date(article.published).toLocaleString() %>
+              </span>
+            </div>
+          </a>
+
+        </div>
+      <% }); %>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/metadata', { title: (locals.id ? 'Edit' : 'New' ) +' Article' }); %>
+</head>
+
+<body class="bg-dark text-secondary">
+  <%- include('./partials/header'); %>
+
+  <div class="container my-4">
+
+    <div class="row mb-4">
+      <h1 class="text-white border-bottom">
+        <%= locals.id ? 'Edit' : 'New draft' %> article
+      </h1>
+      <p class="mb-0">
+        <% if (locals.created) { %>
+          Created <%= new Date(created).toLocaleString() %>
+        <% } %>
+        <% if (locals.modified) { %>
+          | Modified <%= new Date(modified).toLocaleString() %>
+        <% } %>
+        <% if (locals.published) { %>
+          | Published <%= new Date(published).toLocaleString() %>
+        <% } %>
+      </p>
+    </div>
+
+    <div class="row">
+      <form method="post" action="/author/<%= locals.id ? 'edit/'+id : 'new' %>">
+        <div class="mb-3">
+          <label for="title" class="form-label">Article title</label>
+          <input type="text" class="form-control text-bg-dark" id="title" name="title" value="<%= locals.title %>" required>
+        </div>
+        <div class="mb-3">
+          <label for="subtitle" class="form-label">Article subtitle</label>
+          <input type="text" class="form-control text-bg-dark" id="subtitle" name="subtitle" value="<%= locals.subtitle %>" required>
+        </div>
+        <div class="mb-4">
+          <label for="body" class="form-label">Article text</label>
+          <textarea class="form-control text-bg-dark" rows="5" id="body" name="body" required><%= locals.body %></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <a class="btn btn-light float-end" href="/author" role="button">Back</a>
+      </form>
+    </div>
+
+  </div>
+</body>
+
+</html>
