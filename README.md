@@ -1,5 +1,5 @@
 ##  Coursework Template ##
-### CM2040 Database Networks and the Web ###
+### Blogging tool ###
 
 #### Installation requirements ####
 

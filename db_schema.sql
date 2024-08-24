@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS Settings (
 
 INSERT INTO Settings VALUES
 ("title", "Blogging tool"),
-("subtitle", "Simple blogging tool for the mid-term of CM2040"),
+("subtitle", "Simple blogging tool for the mid-term assignment"),
 ("author", "Rodrigo Chin");
 
 
